@@ -27,6 +27,11 @@ void mem_set(void* p, byte val, isize nbytes){
 }
 
 static inline
+void mem_copy(void* dest, void* const src, isize nbytes){
+	__builtin_memcpy(dest, src, nbytes);
+}
+
+static inline
 int mem_valid_alignment(isize align){
 	return (align & (align - 1)) == 0 && (align != 0);
 }
