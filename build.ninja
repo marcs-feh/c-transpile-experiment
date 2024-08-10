@@ -1,0 +1,17 @@
+cc = gcc -std=c17
+cflags = -O1 -pipe -Wall -Wextra -fPIE
+ldflags =
+
+rule compile
+  command = $cc $cflags -c $in -o $out
+
+rule link
+  command = $cc $in -o $out $ldflags
+
+# Auto generated code below
+build bin/allocator.o: compile allocator.c | prelude.h bytes_builder.h assert.h arena.h allocator.h 
+build bin/arena.o: compile arena.c | prelude.h bytes_builder.h assert.h arena.h allocator.h 
+build bin/bytes_builder.o: compile bytes_builder.c | prelude.h bytes_builder.h assert.h arena.h allocator.h 
+build bin/main.o: compile main.c | prelude.h bytes_builder.h assert.h arena.h allocator.h 
+build tpile: link bin/main.o bin/bytes_builder.o bin/arena.o bin/allocator.o 
+
