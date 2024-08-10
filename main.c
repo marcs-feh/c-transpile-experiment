@@ -9,6 +9,5 @@ int main(){
 	Mem_Arena arena;
 	arena_init(&arena, MAIN_MEM, sizeof(MAIN_MEM));
 	Mem_Allocator allocator = arena_allocator(&arena);
-
 }
 
