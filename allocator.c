@@ -18,7 +18,7 @@ void* mem_resize(Mem_Allocator allocator, void* ptr, isize new_size){
 	return new_ptr;
 }
 
-void mem_free(Mem_Allocator allocator, void *p){
+void mem_free(Mem_Allocator allocator, void const * p){
 	if(p == NULL){ return; }
 	allocator.func(allocator.data, Mem_Op_Free, p, 0, 0, NULL);
 }

@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static
+static inline
 void debug_assert(int pred, char* const msg){
 	#ifdef NDEBUG
 		(void)pred; (void)msg;
@@ -15,3 +15,8 @@ void debug_assert(int pred, char* const msg){
 	#endif
 }
 
+static inline
+void panic(char* const msg){
+	fprintf(stderr, "Panic: %s\n", msg);
+	abort();
+}

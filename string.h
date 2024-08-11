@@ -5,7 +5,7 @@
 
 typedef struct {
 	isize len;
-	char* const data;
+	char const * data;
 } String;
 
 static inline
@@ -18,10 +18,12 @@ isize cstring_len(cstring cstr){
 	return size;
 }
 
-String str_from(char* const data, isize len);
+String str_from(char* const data);
 
 String str_sub(String s, isize start, isize length);
 
 String str_clone(String s, Mem_Allocator allocator);
 
 void str_destroy(String s, Mem_Allocator allocator);
+
+bool str_eq(String a, String b);

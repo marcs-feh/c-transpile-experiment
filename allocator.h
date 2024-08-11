@@ -14,7 +14,13 @@ enum Allocator_Op {
 	Mem_Op_Query = 0,
 };
 
-typedef void* (*Mem_Allocator_Func) (void* impl, enum Allocator_Op op, void* old_ptr, isize size, isize align, i32* capabilities);
+typedef void* (*Mem_Allocator_Func) (
+	void* impl,
+	enum Allocator_Op op,
+	void const* old_ptr,
+	isize size, isize align,
+	i32* capabilities
+);
 
 typedef struct {
 	Mem_Allocator_Func func;
@@ -28,7 +34,7 @@ void mem_set(void* p, byte val, isize nbytes){
 
 static inline
 void mem_copy(void* dest, void* const src, isize nbytes){
-	__builtin_memcpy(dest, src, nbytes);
+	__builtin_memmove(dest, src, nbytes);
 }
 
 static inline
@@ -57,7 +63,7 @@ void* mem_alloc(Mem_Allocator allocator, isize size, isize align);
 void* mem_resize(Mem_Allocator allocator, void* ptr, isize new_size);
 
 // Free pointer of memory, freeing NULL is a no-op
-void mem_free(Mem_Allocator allocator, void *p);
+void mem_free(Mem_Allocator allocator, void const * p);
 
 // Free all pointers owned by allocator
 void mem_free_all(Mem_Allocator allocator);

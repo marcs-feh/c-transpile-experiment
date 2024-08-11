@@ -14,7 +14,7 @@ uintptr arena_required_mem(uintptr cur, isize nbytes, isize align){
 }
 
 static
-void* arena_alloc(Mem_Arena* a, isize size, isize align){
+void *arena_alloc(Mem_Arena* a, isize size, isize align){
 	uintptr base = (uintptr)a->data;
 	uintptr current = (uintptr)base + (uintptr)a->offset;
 
@@ -51,7 +51,7 @@ static
 void* arena_allocator_func(
 	void* impl,
 	enum Allocator_Op op,
-	void* old_ptr,
+	void const* old_ptr,
 	isize size,
 	isize align,
 	i32* capabilities)
