@@ -17,7 +17,7 @@ typedef uint32_t u32;
 typedef uint64_t u64;
 
 typedef unsigned int uint;
-typedef char byte;
+typedef uint8_t byte;
 
 typedef ptrdiff_t isize;
 typedef size_t    usize;

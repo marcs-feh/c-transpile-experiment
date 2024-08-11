@@ -7,6 +7,9 @@
 enum TokenKind {
 	Tk_Identifier = 0,
 	Tk_Integer,
+	Tk_Real,
+	Tk_String,
+	Tk_Boolean,
 
 	Tk_Paren_Open,
 	Tk_Paren_Close,
