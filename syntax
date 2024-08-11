@@ -1,0 +1,48 @@
+struct Person {
+	name: string,
+	age, height: int,
+	likes: []Food,
+}
+
+enum Food {
+	IceCream(Flavor),
+	Toast,
+	Water,
+}
+
+enum Flavor {
+	Choccy,
+	Vanilla,
+	Strawberry,
+}
+
+let arr = [2]int{ 200, 100 }
+arr[0] = 1
+
+let f: Food = IceCream(Choccy)
+match f {
+	Toast: "crunch",
+	Water: "glubglub",
+	IceCream(fl): to_string(fl),
+}
+
+match x {
+	0..28 : "low",
+	_ : "high",
+}
+
+fn square(x: i32) -> i32 {
+	return x * x;
+}
+
+struct Stack(T: type){
+	data: []T,
+	top: int,
+}
+
+
+type Stack = struct(T: type) {
+}
+
+
+

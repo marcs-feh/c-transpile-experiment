@@ -9,9 +9,11 @@ rule link
   command = $cc $in -o $out $ldflags
 
 # Auto generated code below
-build bin/allocator.o: compile allocator.c | prelude.h bytes_builder.h assert.h arena.h allocator.h 
-build bin/arena.o: compile arena.c | prelude.h bytes_builder.h assert.h arena.h allocator.h 
-build bin/bytes_builder.o: compile bytes_builder.c | prelude.h bytes_builder.h assert.h arena.h allocator.h 
-build bin/main.o: compile main.c | prelude.h bytes_builder.h assert.h arena.h allocator.h 
-build tpile: link bin/main.o bin/bytes_builder.o bin/arena.o bin/allocator.o 
+build bin/allocator.o: compile allocator.c | string.h prelude.h lexer.h bytes_builder.h assert.h arena.h allocator.h 
+build bin/arena.o: compile arena.c | string.h prelude.h lexer.h bytes_builder.h assert.h arena.h allocator.h 
+build bin/bytes_builder.o: compile bytes_builder.c | string.h prelude.h lexer.h bytes_builder.h assert.h arena.h allocator.h 
+build bin/lexer.o: compile lexer.c | string.h prelude.h lexer.h bytes_builder.h assert.h arena.h allocator.h 
+build bin/main.o: compile main.c | string.h prelude.h lexer.h bytes_builder.h assert.h arena.h allocator.h 
+build bin/string.o: compile string.c | string.h prelude.h lexer.h bytes_builder.h assert.h arena.h allocator.h 
+build tpile: link bin/string.o bin/main.o bin/lexer.o bin/bytes_builder.o bin/arena.o bin/allocator.o 
 

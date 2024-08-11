@@ -27,10 +27,17 @@ typedef uintptr_t uintptr;
 typedef float f32;
 typedef double f64;
 
+typedef char const * cstring;
+
 _Static_assert(sizeof(f32) == 4 && sizeof(f64) == 8, "Bad float size");
 _Static_assert(sizeof(isize) == sizeof(usize), "Bad (i/u)size");
 
 #define Min(a, b) ((a) < (b) ? (a) : (b))
 #define Max(a, b) ((a) > (b) ? (a) : (b))
 #define Clamp(lo, x, hi) Min(Max(lo, x), hi)
+
+#ifndef __cplusplus
+#undef bool
+typedef _Bool bool;
+#endif
 
