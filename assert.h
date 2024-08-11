@@ -15,8 +15,16 @@ void debug_assert(int pred, char* const msg){
 	#endif
 }
 
+[[noreturn]]
 static inline
 void panic(char* const msg){
 	fprintf(stderr, "Panic: %s\n", msg);
+	abort();
+}
+
+[[noreturn]]
+static inline
+void unimplemented(){
+	fprintf(stderr, "Unimplemented\n");
 	abort();
 }

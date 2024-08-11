@@ -54,6 +54,8 @@ typedef struct {
 	isize current;
 	isize previous;
 	String source;
+
+	Mem_Allocator scratch_alloc;
 } Lexer;
 
 // Get next token

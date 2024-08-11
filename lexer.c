@@ -1,5 +1,6 @@
 #include "lexer.h"
 #include "assert.h"
+#include "bytes_builder.h"
 
 #define Op_Token(K_) \
 	(Token){ \
@@ -32,6 +33,38 @@ char lexer_consume_matching(Lexer* lex, char c){
 		return c;
 	}
 	return 0;
+}
+
+static
+bool is_binary(char c){
+	return c == '0' || c == '1';
+}
+
+static
+bool is_octal(char c){
+	return c >= '0' && c <= '7';
+}
+
+static
+bool is_decimal(char c){
+	return c >= '0' && c <= '9';
+}
+
+static
+bool is_hexadecimal(char c){
+	return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F');
+}
+
+static
+Token consume_number(Lexer* lex){
+	Token tk = { .kind = Tk_Error };
+	Bytes_Builder buf;
+	bool ok = builder_init(&buf, lex->scratch_alloc, 64);
+	if(!ok){ return tk; }
+
+	unimplemented();
+
+	return tk;
 }
 
 // Get next token
