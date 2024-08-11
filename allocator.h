@@ -6,12 +6,19 @@
 #define New(T_, N_, Al_) mem_alloc((Al_), sizeof(T_) * (N_), alignof(T_))
 
 enum Allocator_Op {
-	Mem_Op_Alloc    = 1 << 0,
-	Mem_Op_Resize   = 1 << 1,
-	Mem_Op_Free     = 1 << 2,
-	Mem_Op_Free_All = 1 << 3,
+	Mem_Op_Alloc    = 1,
+	Mem_Op_Resize   = 2,
+	Mem_Op_Free     = 3,
+	Mem_Op_Free_All = 4,
 
 	Mem_Op_Query = 0,
+};
+
+enum Allocator_Capability {
+	Allocator_Alloc_Any = 1 << 0,
+	Allocator_Free_Any  = 1 << 1,
+	Allocator_Free_All  = 1 << 2,
+	Allocator_Resize    = 1 << 3,
 };
 
 typedef void* (*Mem_Allocator_Func) (
@@ -63,7 +70,7 @@ void* mem_alloc(Mem_Allocator allocator, isize size, isize align);
 void* mem_resize(Mem_Allocator allocator, void* ptr, isize new_size);
 
 // Free pointer of memory, freeing NULL is a no-op
-void mem_free(Mem_Allocator allocator, void const * p);
+void mem_free(Mem_Allocator allocator, void* p);
 
 // Free all pointers owned by allocator
 void mem_free_all(Mem_Allocator allocator);

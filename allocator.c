@@ -1,6 +1,7 @@
 #include "allocator.h"
 
 i32 allocator_query_capabilites(Mem_Allocator allocator, i32* capabilities){
+	if(capabilities == NULL){ return 0; }
 	allocator.func(allocator.data, Mem_Op_Query, NULL, 0, 0, capabilities);
 	return *capabilities;
 }
@@ -18,7 +19,7 @@ void* mem_resize(Mem_Allocator allocator, void* ptr, isize new_size){
 	return new_ptr;
 }
 
-void mem_free(Mem_Allocator allocator, void const * p){
+void mem_free(Mem_Allocator allocator, void* p){
 	if(p == NULL){ return; }
 	allocator.func(allocator.data, Mem_Op_Free, p, 0, 0, NULL);
 }

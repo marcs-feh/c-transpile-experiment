@@ -37,7 +37,7 @@ void* heap_allocator_func(
 		case Mem_Op_Free_All: {} break;
 
 		case Mem_Op_Query: {
-			*capabilities = Mem_Op_Alloc | Mem_Op_Free;
+			*capabilities = Allocator_Alloc_Any | Allocator_Free_Any;
 		} break;
 	}
 

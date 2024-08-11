@@ -73,8 +73,7 @@ void* arena_allocator_func(
 		case Mem_Op_Free: {} break;
 
 		case Mem_Op_Query: {
-			if(capabilities == NULL){ return NULL; }
-			*capabilities = Mem_Op_Free_All | Mem_Op_Alloc;
+			*capabilities = Allocator_Alloc_Any | Allocator_Free_All;
 		} break;
 	}
 

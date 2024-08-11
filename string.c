@@ -49,5 +49,5 @@ bool str_eq(String a, String b){
 }
 
 void str_destroy(String s, Mem_Allocator allocator){
-	mem_free(allocator, s.data);
+	mem_free(allocator, (void*)s.data);
 }
