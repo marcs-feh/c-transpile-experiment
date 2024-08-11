@@ -1,3 +1,4 @@
 bin/*
 tpile
 .ninja_*
+*.bin
