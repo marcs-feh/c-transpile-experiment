@@ -2,10 +2,18 @@
 
 static const String EMPTY = {0};
 
-String str_from(char* const data){
+String str_from(cstring data){
 	String s = {
 		.data = data,
 		.len = cstring_len(data),
+	};
+	return s;
+}
+
+String str_from_range(cstring data, isize start, isize length){
+	String s = {
+		.data = &data[start],
+		.len = length,
 	};
 	return s;
 }

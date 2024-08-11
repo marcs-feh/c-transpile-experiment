@@ -11,7 +11,7 @@
 
 #define SIZE2 (0xc0) /* 110x_xxxx */
 #define SIZE3 (0xe0) /* 1110_xxxx */
-#define SIZE4 (0xc0) /* 1111_0xxx */
+#define SIZE4 (0xf0) /* 1111_0xxx */
 
 #define CONT  (0x80)  /* 10xx_xxxx */
 
@@ -41,8 +41,8 @@ UTF8_Encode_Result utf8_encode(Codepoint c){
 		res.len = 4;
 		res.bytes[0] = SIZE4 | ((c >> 18) & MASK4);
 		res.bytes[1] = CONT  | ((c >> 12) & MASKX);
-		res.bytes[1] = CONT  | ((c >> 6) & MASKX);
-		res.bytes[2] = CONT  | ((c >> 0) & MASKX);
+		res.bytes[2] = CONT  | ((c >> 6)  & MASKX);
+		res.bytes[3] = CONT  | ((c >> 0)  & MASKX);
 	}
 	return res;
 }

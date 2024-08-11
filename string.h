@@ -18,7 +18,9 @@ isize cstring_len(cstring cstr){
 	return size;
 }
 
-String str_from(char* const data);
+String str_from(cstring data);
+
+String str_from_range(cstring data, isize start, isize length);
 
 String str_sub(String s, isize start, isize length);
 
@@ -27,3 +29,5 @@ String str_clone(String s, Mem_Allocator allocator);
 void str_destroy(String s, Mem_Allocator allocator);
 
 bool str_eq(String a, String b);
+
+

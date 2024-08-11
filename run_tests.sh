@@ -2,7 +2,9 @@
 
 cc=gcc
 
+samu -v -j6
 set -xe
-$cc -O0 -I. -L. -fPIE tests/run.c -o test.bin
+rm bin/main.o
+$cc -O0 -I. -L. -fPIE tests/run.c -o test.bin bin/*
 ./test.bin
 

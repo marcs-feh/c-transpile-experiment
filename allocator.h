@@ -17,7 +17,7 @@ enum Allocator_Op {
 typedef void* (*Mem_Allocator_Func) (
 	void* impl,
 	enum Allocator_Op op,
-	void const* old_ptr,
+	void* old_ptr,
 	isize size, isize align,
 	i32* capabilities
 );
