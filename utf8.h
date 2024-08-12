@@ -34,6 +34,6 @@ bool utf8_continuation_byte(byte b){
 UTF8_Encode_Result utf8_encode(Codepoint c);
 
 // Decode a codepoint from a UTF8 buffer of bytes
-UTF8_Decode_Result utf8_decode(byte* data, isize len);
+UTF8_Decode_Result utf8_decode(byte const* data, isize len);
 
 

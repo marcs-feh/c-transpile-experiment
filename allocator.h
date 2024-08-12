@@ -40,7 +40,7 @@ void mem_set(void* p, byte val, isize nbytes){
 }
 
 static inline
-void mem_copy(void* dest, void* const src, isize nbytes){
+void mem_copy(void* dest, void const * src, isize nbytes){
 	__builtin_memmove(dest, src, nbytes);
 }
 

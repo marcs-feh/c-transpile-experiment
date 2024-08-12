@@ -19,4 +19,5 @@ GenerateNinja(){
 echo "# Auto generated code below" >> build.ninja
 GenerateNinja >> build.ninja
 echo >> build.ninja
+sed -E 's/\s+$//' -i build.ninja
 

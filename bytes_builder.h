@@ -17,7 +17,7 @@ bool builder_init(Bytes_Builder* bb, Mem_Allocator allocator, isize initial_cap)
 void builder_destroy(Bytes_Builder* bb);
 
 // Push bytes to the end of builder, returns success status
-bool builder_push_bytes(Bytes_Builder* bb, byte* const b, isize len);
+bool builder_push_bytes(Bytes_Builder* bb, byte const * b, isize len);
 
 // Resize builder to have specified capacity, returns success status.
 bool builder_resize(Bytes_Builder* bb, isize new_size);

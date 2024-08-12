@@ -49,7 +49,7 @@ UTF8_Encode_Result utf8_encode(Codepoint c){
 
 static const UTF8_Decode_Result DECODE_ERROR = { .codepoint = UTF8_ERROR, .len = 0 };
 
-UTF8_Decode_Result utf8_decode(byte* buf, isize len){
+UTF8_Decode_Result utf8_decode(byte const* buf, isize len){
 	UTF8_Decode_Result res = {0};
 	if(buf == NULL || len <= 0){ return DECODE_ERROR; }
 

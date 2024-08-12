@@ -18,12 +18,13 @@ void builder_destroy(Bytes_Builder* bb){
 	bb->data = 0;
 }
 
-bool builder_push_bytes(Bytes_Builder* bb, byte* const bytes, isize len){
+bool builder_push_bytes(Bytes_Builder* bb, byte const * bytes, isize len){
 	if(bb->len + len > bb->cap){
 		bool status = builder_resize(bb, bb->cap * 2);
 		if(!status){ return false; }
 	}
 	mem_copy(&bb->data[bb->len], bytes, len);
+	bb->len += len;
 	return true;
 }
 

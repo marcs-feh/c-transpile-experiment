@@ -4,15 +4,35 @@ static const String EMPTY = {0};
 
 String str_from(cstring data){
 	String s = {
-		.data = data,
+		.data = (byte const *)data,
 		.len = cstring_len(data),
 	};
 	return s;
 }
 
+String str_from_bytes(byte const* data, isize length){
+	String s = {
+		.data = (byte const *)data,
+		.len = length,
+	};
+	return s;
+}
+
+String str_concat(String a, String b, Mem_Allocator allocator){
+	byte* data = New(byte, a.len + b.len, allocator);
+	String s = {0};
+	if(data != NULL){
+		mem_copy(&data[0], a.data, a.len);
+		mem_copy(&data[a.len], b.data, b.len);
+		s.data = data;
+		s.len = a.len + b.len;
+	}
+	return s;
+}
+
 String str_from_range(cstring data, isize start, isize length){
 	String s = {
-		.data = &data[start],
+		.data = (byte const *)&data[start],
 		.len = length,
 	};
 	return s;
@@ -33,11 +53,12 @@ String str_clone(String s, Mem_Allocator allocator){
 	char* mem = New(char, s.len, allocator);
 	if(mem == NULL){ return EMPTY; }
 	return (String){
-		.data = mem,
+		.data = (byte const *)mem,
 		.len = s.len,
 	};
 }
 
+#include <stdio.h>
 bool str_eq(String a, String b){
 	if(a.len != b.len){ return false; }
 
