@@ -67,10 +67,4 @@ void buffer_reset(Bytes_Buffer* bb){
 	mem_set(bb->data, 0, bb->cap);
 }
 
-byte* buffer_build_str(Bytes_Buffer* bb, Mem_Allocator allocator){
-	byte* buf = New(byte, bb->len, allocator);
-	if(buf == NULL){ return NULL; }
-	buffer_reset(bb);
-	return buf;
-}
 

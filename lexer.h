@@ -30,9 +30,12 @@ enum TokenKind {
 	Tk_Slash,
 	Tk_Modulo,
 
-	Tk_Greater, Tk_Less,
-	Tk_Greater_Equal, Tk_Less_Equal,
-	Tk_Equal_Equal, Tk_Not_Equal,
+	Tk_Greater,
+	Tk_Less,
+	Tk_Greater_Equal,
+	Tk_Less_Equal,
+	Tk_Equal_Equal,
+	Tk_Not_Equal,
 
 	Tk_Bit_And,
 	Tk_Bit_Or,
@@ -44,13 +47,23 @@ enum TokenKind {
 	Tk_Or,
 	Tk_Not,
 
-	Tk_End_Of_File = -1,
-	Tk_Error = -2,
+	// Errors
+	Tk_End_Of_File,
+	Tk_Error,
+
+	// For doing enumerated arrays
+	Tk__last,
 };
 
 typedef struct {
 	enum TokenKind kind;
 	String lexeme;
+
+	union {
+		i64 integer;
+		f64 real;
+		String string;
+	} payload;
 } Token;
 
 typedef struct {

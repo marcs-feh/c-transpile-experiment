@@ -44,6 +44,14 @@ Test_Func test_bytes_buffer(){
 	Expect(str_eq(s, str_from_bytes(buffer_bytes(&bb), bb.len)));
 	// printf("[%ld] %*.s\n", t.len, (int)t.len, t.data);
 
+	{
+		byte* big = mem_alloc(heap_allocator(), 123, 1);
+		buffer_clean_read_bytes(&bb);
+		isize oldcap = bb.cap;
+		Expect(buffer_write(&bb, big, 123));
+		Expect(bb.cap > oldcap);
+	}
+
 	buffer_destroy(&bb);
 	Test_End();
 }

@@ -1,2 +1,3 @@
 -std=c17
 -I.
+-DUTILITY_IMPL

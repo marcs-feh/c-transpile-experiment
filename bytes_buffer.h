@@ -16,6 +16,12 @@ typedef struct {
 // Init a builder with a capacity, returns success status
 bool buffer_init(Bytes_Buffer* bb, Mem_Allocator allocator, isize initial_cap);
 
+// Get remaining free size given the current capacity
+static inline
+isize buffer_remaining(Bytes_Buffer* bb){
+	return bb->cap - (bb->last_read + bb->len);
+}
+
 // Destroy a builder
 void buffer_destroy(Bytes_Buffer* bb);
 
@@ -24,10 +30,6 @@ bool buffer_resize(Bytes_Buffer* bb, isize new_size);
 
 // Resets builder's data, does not de-allocate
 void buffer_reset(Bytes_Buffer* bb);
-
-// Clone builder's current data using provided allocator, then reset. Returns
-// NULL on allocation failure and keeps builder as-is.
-byte* buffer_clone_bytes(Bytes_Buffer* bb, Mem_Allocator allocator);
 
 // Clear buffer's read bytes, this shifts the buffer's memory back to its base.
 void buffer_clean_read_bytes(Bytes_Buffer* bb);

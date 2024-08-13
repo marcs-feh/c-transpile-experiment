@@ -3,6 +3,9 @@
 #include "prelude.h"
 #include "allocator.h"
 
+// Helper to use with printf
+#define FMT_STRING(str_) (int)((str_).len), (str_).data
+
 typedef struct {
 	isize len;
 	byte const * data;
