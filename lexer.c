@@ -1,6 +1,6 @@
 #include "lexer.h"
 #include "assert.h"
-#include "bytes_builder.h"
+#include "bytes_buffer.h"
 
 #define Op_Token(K_) \
 	(Token){ \
@@ -58,8 +58,8 @@ bool is_hexadecimal(char c){
 static
 Token consume_number(Lexer* lex){
 	Token tk = { .kind = Tk_Error };
-	Bytes_Builder buf;
-	bool ok = builder_init(&buf, lex->scratch_alloc, 64);
+	Bytes_Buffer buf;
+	bool ok = buffer_init(&buf, lex->scratch_alloc, 64);
 	if(!ok){ return tk; }
 
 	unimplemented();

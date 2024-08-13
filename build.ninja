@@ -9,15 +9,15 @@ rule link
   command = $cc $in -o $out $ldflags
 
 # Auto generated code below
-build bin/allocator.o: compile allocator.c | utf8.h string.h prelude.h parser.h lexer.h io.h heap_allocator.h bytes_builder.h assert.h arena.h allocator.h
-build bin/arena.o: compile arena.c | utf8.h string.h prelude.h parser.h lexer.h io.h heap_allocator.h bytes_builder.h assert.h arena.h allocator.h
-build bin/bytes_builder.o: compile bytes_builder.c | utf8.h string.h prelude.h parser.h lexer.h io.h heap_allocator.h bytes_builder.h assert.h arena.h allocator.h
-build bin/heap_allocator.o: compile heap_allocator.c | utf8.h string.h prelude.h parser.h lexer.h io.h heap_allocator.h bytes_builder.h assert.h arena.h allocator.h
-build bin/io.o: compile io.c | utf8.h string.h prelude.h parser.h lexer.h io.h heap_allocator.h bytes_builder.h assert.h arena.h allocator.h
-build bin/lexer.o: compile lexer.c | utf8.h string.h prelude.h parser.h lexer.h io.h heap_allocator.h bytes_builder.h assert.h arena.h allocator.h
-build bin/main.o: compile main.c | utf8.h string.h prelude.h parser.h lexer.h io.h heap_allocator.h bytes_builder.h assert.h arena.h allocator.h
-build bin/parser.o: compile parser.c | utf8.h string.h prelude.h parser.h lexer.h io.h heap_allocator.h bytes_builder.h assert.h arena.h allocator.h
-build bin/string.o: compile string.c | utf8.h string.h prelude.h parser.h lexer.h io.h heap_allocator.h bytes_builder.h assert.h arena.h allocator.h
-build bin/utf8.o: compile utf8.c | utf8.h string.h prelude.h parser.h lexer.h io.h heap_allocator.h bytes_builder.h assert.h arena.h allocator.h
-build tpile: link bin/utf8.o bin/string.o bin/parser.o bin/main.o bin/lexer.o bin/io.o bin/heap_allocator.o bin/bytes_builder.o bin/arena.o bin/allocator.o
+build bin/allocator.o: compile allocator.c | utf8.h string.h prelude.h parser.h lexer.h io.h heap_allocator.h bytes_buffer.h assert.h arena.h allocator.h
+build bin/arena.o: compile arena.c | utf8.h string.h prelude.h parser.h lexer.h io.h heap_allocator.h bytes_buffer.h assert.h arena.h allocator.h
+build bin/bytes_buffer.o: compile bytes_buffer.c | utf8.h string.h prelude.h parser.h lexer.h io.h heap_allocator.h bytes_buffer.h assert.h arena.h allocator.h
+build bin/heap_allocator.o: compile heap_allocator.c | utf8.h string.h prelude.h parser.h lexer.h io.h heap_allocator.h bytes_buffer.h assert.h arena.h allocator.h
+build bin/io.o: compile io.c | utf8.h string.h prelude.h parser.h lexer.h io.h heap_allocator.h bytes_buffer.h assert.h arena.h allocator.h
+build bin/lexer.o: compile lexer.c | utf8.h string.h prelude.h parser.h lexer.h io.h heap_allocator.h bytes_buffer.h assert.h arena.h allocator.h
+build bin/main.o: compile main.c | utf8.h string.h prelude.h parser.h lexer.h io.h heap_allocator.h bytes_buffer.h assert.h arena.h allocator.h
+build bin/parser.o: compile parser.c | utf8.h string.h prelude.h parser.h lexer.h io.h heap_allocator.h bytes_buffer.h assert.h arena.h allocator.h
+build bin/string.o: compile string.c | utf8.h string.h prelude.h parser.h lexer.h io.h heap_allocator.h bytes_buffer.h assert.h arena.h allocator.h
+build bin/utf8.o: compile utf8.c | utf8.h string.h prelude.h parser.h lexer.h io.h heap_allocator.h bytes_buffer.h assert.h arena.h allocator.h
+build tpile: link bin/utf8.o bin/string.o bin/parser.o bin/main.o bin/lexer.o bin/io.o bin/heap_allocator.o bin/bytes_buffer.o bin/arena.o bin/allocator.o
 
