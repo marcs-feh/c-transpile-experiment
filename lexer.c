@@ -8,6 +8,8 @@
 		.lexeme = {0}, \
 	}
 
+#include "lexer_tokens.c.table"
+
 static
 char lexer_consume(Lexer* lex){
 	if(lex->current >= lex->source.len){
@@ -70,53 +72,41 @@ Token consume_number(Lexer* lex){
 // Get next token
 Token lexer_next(Lexer* lex){
 	Token tk = { .kind = Tk_End_Of_File };
+	i32 key = 0;
 
 	char c = lexer_consume(lex);
 	if(c == 0){ return tk; }
 
-	switch(c){
-		case '.': tk = Op_Token(Tk_Dot); break;
-		case ':': tk = Op_Token(Tk_Colon); break;
-		case ';': tk = Op_Token(Tk_Semicolon); break;
-		case ',': tk = Op_Token(Tk_Comma); break;
-
-		case '+': tk = Op_Token(Tk_Plus); break;
-		case '-': tk = Op_Token(Tk_Minus); break;
-		case '*': tk = Op_Token(Tk_Star); break;
-		case '/': tk = Op_Token(Tk_Slash); break;
-		case '%': tk = Op_Token(Tk_Modulo); break;
-
-		case '&': tk = Op_Token(Tk_Plus); break;
-		case '|': tk = Op_Token(Tk_Plus); break;
-		case '~': tk = Op_Token(Tk_Plus); break;
-
-		case '>': {
-			if(lexer_consume_matching(lex, '>')){
-				tk = Op_Token(Tk_Shift_Right);
-			} else if(lexer_consume_matching(lex, '=')){
-				tk = Op_Token(Tk_Greater_Equal);
-			} else {
-				tk = Op_Token(Tk_Greater);
-			}
-		} break;
-
-		case '<': {
-			if(lexer_consume_matching(lex, '<')){
-				tk = Op_Token(Tk_Shift_Left);
-			} else if(lexer_consume_matching(lex, '=')){
-				tk = Op_Token(Tk_Less_Equal);
-			} else {
-				tk = Op_Token(Tk_Less);
-			}
-		} break;
-
-		default:
-			panic("Bruh");
-		break;
+	/* Tokens 1 */ {
+		key = (i32)c;
+		tk.kind = tokens1_lookup(key);
+		if(tk.kind > 0){ // One byte token
+			return tk;
+		}
 	}
 
+	/* Tokens 2 */ {
+		i32 buf[2] = {c, lexer_peek(lex, 0)};
+		key = (buf[0] << 8) | buf[1];
+		tk.kind = tokens2_lookup(key);
+
+		if(tk.kind > 0){ // Two byte token
+			lex->current += 1;
+			return tk;
+		}
+
+		// Ignore 2nd char and try again
+		key = buf[0] << 8;
+		tk.kind = tokens2_lookup(key);
+		if(tk.kind > 0){ // One byte token
+			return tk;
+		}
+	}
+
+	tk.kind = Tk_Error;
 	return tk;
 }
+
 
 // Initialize lexer
 void lexer_init(Lexer* lex, String source){

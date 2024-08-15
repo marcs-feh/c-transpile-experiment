@@ -24,14 +24,13 @@ int main(){
 	arena_init(&temp_arena, TEMP_MEM, sizeof(TEMP_MEM));
 	Mem_Allocator temp_allocator = arena_allocator(&temp_arena);
 
-	static Token tokens[] = {
-		(Token){.kind = Tk_And},
-		(Token){.kind = Tk_Not},
-		(Token){.kind = Tk_Identifier, .lexeme = (String){1, (byte const*)"x"}},
-	};
+	Lexer lex;
+	lexer_init(&lex, str_from("+3+"));
 
-	String s = format_tokens(temp_allocator, tokens, 3);
-	printf("'%.*s'\n", (int)s.len, (char const*) s.data);
-	print_bytes(s.data, s.len);
+	for(Token tk = lexer_next(&lex); tk.kind != Tk_End_Of_File; tk = lexer_next(&lex)){
+		String tkstr = format_tokens(temp_allocator, &tk, 1);
+		printf("%.*s ", FMT_STRING(tkstr));
+		mem_free_all(temp_allocator);
+	}
 }
 

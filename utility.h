@@ -41,6 +41,7 @@ static const cstring TOKEN_MAP[] = {
 	[Tk_Star]   = "*",
 	[Tk_Slash]  = "/",
 	[Tk_Modulo] = "%",
+	[Tk_Arrow] = "->",
 
 	[Tk_Greater]       = ">",
 	[Tk_Less]          = "<",
@@ -90,9 +91,6 @@ String format_tokens(Mem_Allocator allocator, Token* tokens, isize count){
 			n = snprintf((char*) &buffer_bytes(&buf)[buf.len], buffer_remaining(&buf), "%s ", TOKEN_MAP[tk.kind]);
 		}
 		buf.len += n;
-
-		// printf("Wrote %d. (last:%d len:%d)\n", n, buf.last_read, buf.len);
-		print_bytes(buffer_bytes(&buf), buf.len);
 	}
 
 	if(!buffer_resize(&buf, buf.len + 1)){ return s; }

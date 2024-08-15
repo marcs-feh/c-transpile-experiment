@@ -4,7 +4,7 @@
 #include "string.h"
 // #include "allocator.h"
 
-enum TokenKind {
+enum TokenKind : i32 {
 	Tk_Identifier = 0,
 	Tk_Integer,
 	Tk_Real,
@@ -36,6 +36,8 @@ enum TokenKind {
 	Tk_Less_Equal,
 	Tk_Equal_Equal,
 	Tk_Not_Equal,
+
+	Tk_Arrow,
 
 	Tk_Bit_And,
 	Tk_Bit_Or,

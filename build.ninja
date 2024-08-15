@@ -1,12 +1,18 @@
-cc = clang -std=c11
-cflags = -O1 -Wall -Wextra -fPIE -I. -fsanitize=address,undefined
-ldflags = -L. -use-ld=mold -lasan -lubsan
+cc = clang -std=c99
+cflags = -O0 -g -Wall -Wextra -fPIE -I. -fsanitize=address
+ldflags = -L. -use-ld=mold -lasan
 
 rule compile
   command = $cc $cflags -c $in -o $out
 
 rule link
   command = $cc $in -o $out $ldflags
+
+rule codegen
+  command = $cc -O0 -I. $in -o codegen.bin && ./codegen.bin $out && rm codegen.bin
+
+# Hand written build rules
+build lexer_tokens.c.table: codegen tools/generate_lexer_table.c | lexer.h
 
 # Auto generated code below
 build bin/allocator.o: compile allocator.c | utility.h utf8.h string.h prelude.h parser.h lexer.h io.h heap_allocator.h bytes_buffer.h assert.h arena.h allocator.h

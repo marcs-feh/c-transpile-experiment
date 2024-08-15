@@ -1,0 +1,41 @@
+static const i32 tokens1_lookup(i32 key){
+	switch(key){
+	case 0x0028: return 5; /* ( */
+	case 0x0029: return 6; /* ) */
+	case 0x005b: return 7; /* [ */
+	case 0x005d: return 8; /* ] */
+	case 0x007b: return 9; /* { */
+	case 0x007d: return 10; /* } */
+	case 0x002e: return 12; /* . */
+	case 0x002c: return 13; /* , */
+	case 0x003b: return 14; /* ; */
+	case 0x003a: return 15; /* : */
+	case 0x007e: return 30; /* ~ */
+	default: return -1;
+	}
+}
+static const i32 tokens2_lookup(i32 key){
+	switch(key){
+	case 0x3d00: return 11; /* = */
+	case 0x2b00: return 16; /* + */
+	case 0x2d00: return 17; /* - */
+	case 0x2a00: return 18; /* * */
+	case 0x2f00: return 19; /* / */
+	case 0x2500: return 20; /* % */
+	case 0x3e00: return 21; /* > */
+	case 0x3c00: return 22; /* < */
+	case 0x3e3d: return 23; /* >= */
+	case 0x3c3d: return 24; /* <= */
+	case 0x3d3d: return 25; /* == */
+	case 0x213d: return 26; /* != */
+	case 0x2d3e: return 27; /* -> */
+	case 0x2600: return 28; /* & */
+	case 0x7c00: return 29; /* | */
+	case 0x3c3c: return 31; /* << */
+	case 0x3e3e: return 32; /* >> */
+	case 0x2626: return 33; /* && */
+	case 0x7c7c: return 34; /* || */
+	case 0x2100: return 35; /* ! */
+	default: return -1;
+	}
+}
