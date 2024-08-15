@@ -1,4 +1,4 @@
-static const i32 tokens1_lookup(i32 key){
+static i32 tokens1_lookup(i32 key){
 	switch(key){
 	case 0x0028: return 5; /* ( */
 	case 0x0029: return 6; /* ) */
@@ -14,7 +14,7 @@ static const i32 tokens1_lookup(i32 key){
 	default: return -1;
 	}
 }
-static const i32 tokens2_lookup(i32 key){
+static i32 tokens2_lookup(i32 key){
 	switch(key){
 	case 0x3d00: return 11; /* = */
 	case 0x2b00: return 16; /* + */

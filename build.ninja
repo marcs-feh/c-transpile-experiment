@@ -1,5 +1,6 @@
 cc = clang -std=c99
-cflags = -O0 -g -Wall -Wextra -fPIE -I. -fsanitize=address
+cflags = -O0 -g -Wall -Wextra -fPIE -I.
+#-fsanitize=address
 ldflags = -L. -use-ld=mold -lasan
 
 rule compile
@@ -25,5 +26,5 @@ build bin/main.o: compile main.c | utility.h utf8.h string.h prelude.h parser.h 
 build bin/parser.o: compile parser.c | utility.h utf8.h string.h prelude.h parser.h lexer.h io.h heap_allocator.h bytes_buffer.h assert.h arena.h allocator.h
 build bin/string.o: compile string.c | utility.h utf8.h string.h prelude.h parser.h lexer.h io.h heap_allocator.h bytes_buffer.h assert.h arena.h allocator.h
 build bin/utf8.o: compile utf8.c | utility.h utf8.h string.h prelude.h parser.h lexer.h io.h heap_allocator.h bytes_buffer.h assert.h arena.h allocator.h
-build tpile: link bin/utf8.o bin/string.o bin/parser.o bin/main.o bin/lexer.o bin/io.o bin/heap_allocator.o bin/bytes_buffer.o bin/arena.o bin/allocator.o
+build tpile: link bin/utf8.o bin/string.o bin/parser.o bin/main.o bin/lexer.o bin/io.o bin/heap_allocator.o bin/bytes_buffer.o bin/arena.o bin/allocator.o  | lexer_tokens.c.table
 

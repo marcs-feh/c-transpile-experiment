@@ -1,8 +1,6 @@
-
 // Code generation utility
 // Compile and run this from the project root with:
 // cc -I. -o gen-table && ./gen-table
-
 
 #define OUTPUT_FILE "lexer_tokens.c.table"
 #include "lexer.h"
@@ -66,7 +64,7 @@ int main(){
 			i32 key = (i32)TOKENS1[i][0];
 			tk1[i] = key;
 		}
-		written += fprintf(f, "static const i32 tokens1_lookup(i32 key){\n");
+		written += fprintf(f, "static i32 tokens1_lookup(i32 key){\n");
 		written += fprintf(f, "\tswitch(key){\n");
 		for(i32 i = 0; i < Tk__last; i += 1){
 			if(tk1[i] != 0){
@@ -87,7 +85,7 @@ int main(){
 			tk2[i] = key;
 		}
 
-		written += fprintf(f, "static const i32 tokens2_lookup(i32 key){\n");
+		written += fprintf(f, "static i32 tokens2_lookup(i32 key){\n");
 		written += fprintf(f, "\tswitch(key){\n");
 		for(i32 i = 0; i < Tk__last; i += 1){
 			if(tk2[i] != 0){
